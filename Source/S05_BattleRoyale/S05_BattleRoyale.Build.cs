@@ -6,6 +6,6 @@ public class S05_BattleRoyale : ModuleRules
 {
 	public S05_BattleRoyale(TargetInfo Target)
 	{
-		PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore", "HeadMountedDisplay" });
+		PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore", "AIModule", "GameplayTasks",  "HeadMountedDisplay" });
 	}
 }
