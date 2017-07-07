@@ -14,6 +14,7 @@ class S05_BATTLEROYALE_API APatrollingGuard : public ATP_ThirdPersonCharacter
 {
 	GENERATED_BODY()
 
+public: // todo: Remove and replace with Getter
 		UPROPERTY(EditInstanceOnly, Category="Patrol Route" )
 		TArray<AActor*> PatrolPointsCPP;
 	
