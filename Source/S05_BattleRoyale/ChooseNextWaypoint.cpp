@@ -3,25 +3,32 @@
 #include "S05_BattleRoyale.h"
 #include "ChooseNextWaypoint.h"
 #include "AIController.h"
-#include "PatrollingGuard.h" //TODO: Remove Coupling
+#include "PatrolRoute.h"
 #include "BehaviorTree/BlackboardComponent.h"
 
 
 EBTNodeResult::Type UChooseNextWaypoint::ExecuteTask(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory) {
 
-	// TODO: Protect against empty patrol routes
+	
 
 	//jdeo- get the patrol points
 	auto AIController = OwnerComp.GetAIOwner();
 	auto ControlledPawn = AIController->GetPawn();
-	auto PatrollingGuard = Cast<APatrollingGuard>(ControlledPawn);
-	auto PatrolPoints = PatrollingGuard->PatrolPointsCPP;
+	auto PatrolRoute = ControlledPawn->FindComponentByClass<UPatrolRoute>();
 
+	//jdeo- Protect against no patrol route component
+	if (!ensure(PatrolRoute)) { return EBTNodeResult::Failed;}
+
+	auto PatrolPoints = PatrolRoute->GetPatrolPoints();
+	//jdeo- Protect against empty patrol routes
+	if (PatrolPoints.Num() <= 0) {
+		UE_LOG(LogTemp, Warning, TEXT("Guard is Missing Patrol Points"));
+	}
 
 	auto BlackboardComp = OwnerComp.GetBlackboardComponent();
 	auto Index = BlackboardComp->GetValueAsInt(IndexKey.SelectedKeyName);
 	auto IndexName = IndexKey.SelectedKeyName;
-	UE_LOG(LogTemp, Warning, TEXT("Waypoint Name: %s -- Waypoint index: %i"), *(IndexName.ToString()), Index);
+	//UE_LOG(LogTemp, Warning, TEXT("Waypoint Name: %s -- Waypoint index: %i"), *(IndexName.ToString()), Index);
 	
 	//jdeo- set the next waypoint
 	BlackboardComp->SetValueAsObject(WaypointKey.SelectedKeyName, PatrolPoints[Index]);
