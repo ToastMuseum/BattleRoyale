@@ -21,8 +21,9 @@ EBTNodeResult::Type UChooseNextWaypoint::ExecuteTask(UBehaviorTreeComponent& Own
 
 	auto PatrolPoints = PatrolRoute->GetPatrolPoints();
 	//jdeo- Protect against empty patrol routes
-	if (PatrolPoints.Num() <= 0) {
+	if (PatrolPoints.Num() == 0) {
 		UE_LOG(LogTemp, Warning, TEXT("Guard is Missing Patrol Points"));
+		return EBTNodeResult::Failed;
 	}
 
 	auto BlackboardComp = OwnerComp.GetBlackboardComponent();
