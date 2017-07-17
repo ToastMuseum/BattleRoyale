@@ -4,8 +4,9 @@ using UnrealBuildTool;
 
 public class S05_BattleRoyale : ModuleRules
 {
-	public S05_BattleRoyale(TargetInfo Target)
-	{
+    //jdeo- public S05_BattleRoyale(TargetInfo Target)
+    public S05_BattleRoyale(ReadOnlyTargetRules Target) : base (Target)
+    {
 		PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore", "AIModule", "GameplayTasks",  "HeadMountedDisplay" });
 	}
 }

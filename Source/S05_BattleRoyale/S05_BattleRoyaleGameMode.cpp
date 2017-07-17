@@ -3,7 +3,7 @@
 #include "S05_BattleRoyale.h"
 #include "S05_BattleRoyaleGameMode.h"
 #include "S05_BattleRoyaleHUD.h"
-#include "S05_BattleRoyaleCharacter.h"
+#include "Player/FirstPersonCharacter.h"
 
 AS05_BattleRoyaleGameMode::AS05_BattleRoyaleGameMode()
 	: Super()

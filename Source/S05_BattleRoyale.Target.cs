@@ -5,15 +5,21 @@ using System.Collections.Generic;
 
 public class S05_BattleRoyaleTarget : TargetRules
 {
-	public S05_BattleRoyaleTarget(TargetInfo Target)
-	{
+	//jdeo - public S05_BattleRoyaleTarget(TargetInfo Target)
+	public S05_BattleRoyaleTarget(TargetInfo Target) : base (Target)
+    {
 		Type = TargetType.Game;
+        
+        // Jdeo- Trying to fix the Module constructors error
+        Type = TargetType.Game;
+        ExtraModuleNames.Add("S05_BattleRoyale");
 	}
 
 	//
 	// TargetRules interface.
 	//
 
+    /* jdeo
 	public override void SetupBinaries(
 		TargetInfo Target,
 		ref List<UEBuildBinaryConfiguration> OutBuildBinaryConfigurations,
@@ -22,4 +28,6 @@ public class S05_BattleRoyaleTarget : TargetRules
 	{
 		OutExtraModuleNames.Add("S05_BattleRoyale");
 	}
+    */
+
 }
